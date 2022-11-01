@@ -10,6 +10,9 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
     <style>
+      body {
+        padding-top: 6.5rem;
+      }
       .footer {
         background-color: #B7D8E1;
       }
@@ -22,15 +25,19 @@
   </head>
   <body class="d-flex flex-column h-100">
 
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-light">
+      <img src="{{ asset('images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
+    </nav>
+  
     <div class="container-fluid h-100">
       @yield('content')
     </div>
     
-    <footer class="footer mt-auto py-3">
+    <!--<footer class="footer mt-auto py-3">
       <div class="container-fluid">
         <img src="{{ asset('images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
       </div>
-    </footer>
+    </footer>-->
 
     <!-- JavaScript -->
     <script>
@@ -73,7 +80,7 @@
               });
           }
 
-          exib_senh();
+          exib_hist(0);
 
           setInterval(function(){
             exib_senh();

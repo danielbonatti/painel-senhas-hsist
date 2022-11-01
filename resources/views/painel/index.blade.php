@@ -1,7 +1,7 @@
 @extends('painel.layout')
 @section('content')
     <div class="row h-100">
-        <div class="col-md-9 text-center">
+        <div class="col-md-9 text-center bg-white">
             <table class="senha w-100 h-100">
                 <tbody></tbody>
             </table>
