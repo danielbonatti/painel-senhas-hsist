@@ -58,11 +58,13 @@
                       
                       // Toca som de alerta 
                       audio.play();
+
+                      // Pisca a senha
                       $('.senha > tbody').fadeOut(400);
                       $('.senha > tbody').fadeIn(400);
                       
                       // Atualiza o histórico
-                      exib_hist(this.id);
+                      exib_hist(this.codigo);
                   });
               });
           }

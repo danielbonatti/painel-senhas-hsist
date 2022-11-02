@@ -61,9 +61,9 @@ class SenhaController extends Controller
                 ->where('id', $senha->id)
                 ->update(['datcha' => date('Y-m-d H:i:s')]);
             // Retorna a senha chamada 
-            return $senha->codigo;
+            return response()->json(["id" => 1, "senha" => $senha->codigo]);
         } else {
-            return '';
+            return response()->json(["id" => 0, "senha" => '']);
         }
     }
 

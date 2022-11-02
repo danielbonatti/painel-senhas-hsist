@@ -15,7 +15,7 @@ class CreateSenhasTable extends Migration
     {
         Schema::create('senhas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo',8);
+            $table->string('codigo',8)->index();
             $table->dateTime('datemi')->index();
             $table->dateTime('datcha')->nullable()->index();
             $table->dateTime('datexi')->nullable()->index();
