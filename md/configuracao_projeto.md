@@ -32,7 +32,30 @@ composer install
 php artisan key:generate
 ```
 
-## 5 – Inserir registro(s) na tabela de setores
+## 5 - Dar permissão a pasta
+```
+chmod -R 777 /var/www/html/painel-senhas-hsist
+```
+
+## 6 - Configurar CRON
+```
+nano /etc/crontab
+
+* * * * * root php /var/www/html/painel-senhas-hsist/artisan schedule:run >> /dev/null 2>&1
+
+service cron restart
+```
+
+## 7 - Configurar Supervisord
+```
+cp /var/www/html/painel-senhas-hsist/files/painel-senhas-hsist.conf /etc/supervisor/conf.d/painel-senhas-hsist.conf
+
+supervisorctl reread
+supervisorctl update
+supervisorctl start all
+```
+
+## 8 – Inserir registro(s) na tabela de setores
 ```
 sudo mysql -u root -p
 
@@ -43,15 +66,15 @@ insert into setores (codigo,espsim) values ('600148','C. CIRURGICO'),('600385','
 exit;
 ```
 
-## 6 - Criar a(s) tabela(s) no banco de dados
+## 9 - Criar a(s) tabela(s) no banco de dados
 ```
 php artisan migrate
 ```
 
-## 7 - Reiniciar a vmbox se necessário
+## 10 - Reiniciar a vmbox se necessário
 Se o Laravel exibir erros de conexão com o banco de dados tente reiniciar a maquina virtual, pois um período de ociosidade na vm pode cortar a conexão com a internet. 
 
-## 8 - Rodar a aplicação 
+## 11 - Rodar a aplicação 
 Executar o comando abaixo na raiz do diretório do projeto criado.
 ```
 php artisan serve
