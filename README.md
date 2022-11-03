@@ -11,3 +11,4 @@ https://github.com/danielbonatti/painel-senhas-hsist/blob/main/md/habilitar_git_
 https://github.com/danielbonatti/painel-senhas-hsist/blob/main/md/comandos_artisan.md
 
 ## Ajustes no projeto para rodar nos servidores Hsist
+https://github.com/danielbonatti/painel-senhas-hsist/blob/main/md/configuracoes_serv_hsist.md
