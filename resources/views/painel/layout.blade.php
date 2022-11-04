@@ -9,15 +9,6 @@
     <!-- Styles -->
     <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
 
-    <style>
-      body {
-        padding-top: 6.5rem;
-      }
-      .footer {
-        background-color: #B7D8E1;
-      }
-    </style>
-
     <!-- jQuery 2.2.3 -->
     <script src="{{ asset('public/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 
