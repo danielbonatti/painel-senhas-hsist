@@ -15,7 +15,7 @@
     
     <nav class="navbar navbar-expand-md navbar-light bg-light">
       <div class="col-md-3 text-center">
-        <img src="{{ asset('images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
+        <img src="{{ asset('public/images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
       </div>
       <div class="col-md-9">&nbsp;</div>
     </nav>
