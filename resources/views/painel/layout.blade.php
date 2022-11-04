@@ -25,19 +25,19 @@
   </head>
   <body class="d-flex flex-column h-100">
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-light">
-      <img src="{{ asset('public/images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="col-md-3 text-center">
+        <img src="{{ asset('images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
+      </div>
+      <div class="col-md-6">&nbsp;</div>
+      <div class="col-md-3 text-center">
+        <h2><span class="navbar-text" id="data_hora">XX/XX/XXXX - XX:XX:XX</span></h2>
+      </div>
     </nav>
   
     <div class="container-fluid h-100">
       @yield('content')
     </div>
-    
-    <!--<footer class="footer mt-auto py-3">
-      <div class="container-fluid">
-        <img src="{{ asset('public/images/logo.png') }}" width="280" class="img-fluid" alt="Hsist">
-      </div>
-    </footer>-->
 
     <!-- JavaScript -->
     <script>
@@ -87,6 +87,19 @@
           setInterval(function(){
             exib_senh();
           }, 5000);
+
+          // Preenche o horário
+          function preenche_horario() {
+            date = new Date();
+            ws_dathor = ("0" + date.getDate()).slice(-2) + "/" + ("0" + (date.getMonth() + 1)).slice(-2) + "/" + date.getFullYear() + " - " + ("0" + date.getHours()).slice(-2) + ":" + ("0" + date.getMinutes()).slice(-2) + ":" + ("0" + date.getSeconds()).slice(-2);
+            $('#data_hora').html(ws_dathor);
+          }
+
+          preenche_horario();
+
+          setInterval(function() {
+            preenche_horario();
+          }, 1000);
       })
     </script>
   </body>
