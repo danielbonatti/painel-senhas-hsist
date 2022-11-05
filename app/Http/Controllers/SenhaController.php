@@ -45,25 +45,32 @@ class SenhaController extends Controller
         //return asset('js/script.js');
     }
 
-    public function proxima()
+    public function proxima(Request $request)
     {
+        $json = json_decode($request->getContent());
         date_default_timezone_set('America/Sao_Paulo');
-        // Procura a próxima senha
-        $senha = DB::table('senhas')
-            ->whereDate('datemi','=',date('Y-m-d'))
-            ->where('datcha',null)
-            ->orderBy('tipate','desc')
-            ->orderBy('datemi')
-            ->first();
-        if(!is_null($senha)){
-            // Atualiza para chamada
-            $alter = DB::table('senhas')
-                ->where('id', $senha->id)
-                ->update(['datcha' => date('Y-m-d H:i:s')]);
-            // Retorna a senha chamada 
-            return response()->json(["id" => 1, "senha" => $senha->codigo]);
+
+        if($json == null){
+            return response()->json(["id" => 0, "senha" => '']); 
         } else {
-            return response()->json(["id" => 0, "senha" => '']);
+            // Procura a próxima senha
+            $senha = DB::table('senhas')
+                ->whereDate('datemi','=',date('Y-m-d'))
+                ->where('datcha',null)
+                ->orderBy('tipate','desc')
+                ->orderBy('datemi')
+                ->first();
+            if(!is_null($senha)){
+                // Atualiza para chamada
+                $alter = DB::table('senhas')
+                    ->where('id', $senha->id)
+                    ->update(['guiche' => $json->guiche])
+                    ->update(['datcha' => date('Y-m-d H:i:s')]);
+                // Retorna a senha chamada 
+                return response()->json(["id" => 1, "senha" => $senha->codigo]);
+            } else {
+                return response()->json(["id" => 0, "senha" => '']);
+            }
         }
     }
 

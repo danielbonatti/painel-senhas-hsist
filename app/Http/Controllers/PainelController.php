@@ -22,7 +22,14 @@ class PainelController extends Controller
     {
         date_default_timezone_set('America/Sao_Paulo');
         // Próxima senha
-        $select = DB::select('select tipate,codigo,"Guichê 01" guiche,id from senhas where date(datemi)=curdate() and datcha is not null and datexi is null order by tipate desc,datemi limit 1');
+        $select = DB::select('select tipate,codigo,tab_especi guiche,id 
+                                from senhas
+                                left join gsc_tab_guiche on (tab_codigo=guiche) 
+                                where date(datemi)=curdate() 
+                                and datcha is not null 
+                                and datexi is null 
+                                order by tipate desc,datemi 
+                                limit 1');
         // Atualiza para exibido
         if(!is_null($select)){
             $alter = DB::table('senhas')
@@ -39,7 +46,13 @@ class PainelController extends Controller
 
     public function historico($codigo)
     {
-        $select = DB::select("select codigo,'Guichê 01' guiche from senhas where date(datemi)=curdate() and datexi is not null and codigo<>'$codigo' order by datexi desc limit 4");
+        $select = DB::select("select codigo,tab_especi guiche 
+                                from senhas 
+                                left join gsc_tab_guiche on (tab_codigo=guiche)
+                                where datexi is not null 
+                                and codigo<>'$codigo' 
+                                order by datexi desc 
+                                limit 4");
 		return response()->json($select);
     }
 
