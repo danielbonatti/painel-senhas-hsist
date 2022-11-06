@@ -66,7 +66,7 @@ class SenhaController extends Controller
                 // Atualiza para chamada
                 $alter = DB::table('senhas')
                     ->where('id', $senha->id)
-                    ->update(['datcha' => date('Y-m-d H:i:s')]);
+                    ->update(['datcha' => date('Y-m-d H:i:s'), 'guiche' => $json->guiche]);
                 // Retorna a senha chamada 
                 return response()->json(["id" => 1, "senha" => $senha->codigo]);
             } else {
