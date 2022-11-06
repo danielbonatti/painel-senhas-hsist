@@ -23,7 +23,7 @@ class CreateSenhasTable extends Migration
             $table->string('codset',6)->references('codigo')->on('setores');
             $table->string('atiset',2);
             $table->char('tipate',1);
-            $table->integer('guiche',3)->index();
+            $table->integer('guiche',3)->nullable()->index();
             $table->timestamps();
         });
     }
