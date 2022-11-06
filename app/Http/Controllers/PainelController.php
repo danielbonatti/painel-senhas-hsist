@@ -23,7 +23,7 @@ class PainelController extends Controller
         date_default_timezone_set('America/Sao_Paulo');
         // Próxima senha
         $select = DB::select('select * from (
-                                select tipate,codigo,tab_especi guiche,id,datcha,tipate,datemi 
+                                select tipate,codigo,tab_especi guiche,id,datcha,datemi 
                                 from senhas
                                 left join gsc_tab_guiche on (tab_codigo=guiche) 
                                 where datexi is null
