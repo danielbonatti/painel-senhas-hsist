@@ -22,14 +22,15 @@ class PainelController extends Controller
     {
         date_default_timezone_set('America/Sao_Paulo');
         // Próxima senha
-        $select = DB::select('select tipate,codigo,tab_especi guiche,id 
+        $select = DB::select('select * from (
+                                select tipate,codigo,tab_especi guiche,id,datcha,tipate,datemi 
                                 from senhas
                                 left join gsc_tab_guiche on (tab_codigo=guiche) 
-                                where date(datemi)=curdate() 
-                                and datcha is not null 
-                                and datexi is null 
-                                order by tipate desc,datemi 
-                                limit 1');
+                                where datexi is null
+                            ) x
+                            where datcha is not null 
+                            order by tipate desc,datemi 
+                            limit 1');
         // Atualiza para exibido
         if(!is_null($select)){
             $alter = DB::table('senhas')
