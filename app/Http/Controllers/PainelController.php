@@ -47,11 +47,16 @@ class PainelController extends Controller
 
     public function historico($codigo)
     {
+        /* exibe senhas marcadas como já exibidas, 
+           não exibe a que está sendo chamada,
+           não exibe senhas chamadas a mais de três horas
+           exibe as quatro últimas chamadas */
         $select = DB::select("select codigo,tab_especi guiche 
                                 from senhas 
                                 left join gsc_tab_guiche on (tab_codigo=guiche)
                                 where datexi is not null 
                                 and codigo<>'$codigo' 
+                                and timediff(now(),datexi)<'03:00:00'
                                 order by datexi desc 
                                 limit 4");
 		return response()->json($select);
